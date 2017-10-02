@@ -161,7 +161,7 @@ nullAbleRef = "Go weekend!!"
 nullAbleRef = null
 ```
 
-### Safe call operator
+### Safe call operator - A safe voice in and endless void*
 The safe call operator ? wraps call in a invisible if statement:
 ```kotlin
 var view : Activity? = null
@@ -202,10 +202,11 @@ val cousinName : String = person.uncle?.cousin?.name ?: ""
 In this case cousinName isn't nullable, if we do not use the elvis operator to specify an alternative (in this case an empty string)
 the statement won't compile.
 
-### I don't care operator (unsafecall?)
-### Lateinit
+### The !! operator (unsafecall?)
 
-## Listeners and Callbacks
+### Fashionable lateinit
+
+## Listeners and Callbacks and starhips named enterprise
 In java listeners and callbacks are generally implemented as interfaces (or abstract base classes).
 Often anonymous class instantiations are used to write the code "in place", instead of having
 to declare a separate class.
@@ -283,7 +284,7 @@ For instance if you don't care about the view parameter on View.OnClickListener,
 ```kotlin
 view.setOnClickListener { doSomething() }
 ```
-## String Templates
+## Contemplating String Templates
 Use string templates, they are awesome :). You basically use them like this:
 
 ```kotlin
@@ -321,7 +322,7 @@ val str = "Ole has ${String.format(Locale.getDefault(), "%.2f", dollars ?: 0.0)}
 **Output**: "Ole has 0.00 russerdollars!!"
 **Do not use nullable types unless you really have to or are getting object references from calling java code**
 
-## Typealias
+## Typealias - oe type many names
 typealias is a keyword that works a bit like _typedef_ from the C language family (a powerful keyword from a more civilized age). It basically allows you
 to substitute/alias a type name for another like this:
 
@@ -353,7 +354,7 @@ class MyClass {
 ```
 Now CallbackFunction can be used instead of typing out: (success: Boolean) -> Int, much more readable. 
 
-## Singletons and static members
+## Singletons and static members - Open from 10PM
 Singletons are basically a way of allowing only one instance of a class. Because this is such an often used
 pattern Kotlin supports it directly using Object Declaration:
 
@@ -392,7 +393,7 @@ class MyClass {
 }
 ```
 
-### Android Application class (companion object)
+### Android Application class (with companion object)
 The classic use of the singleton pattern in android apps is to provide access to a custom Application object.
 Custom in the regard that its your own classed derived from the Android framework application class.
 
