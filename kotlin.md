@@ -93,7 +93,7 @@ when(str)
 
 ### Ranges
 
-## Data objects
+## Data objects ... dobjects?
 Data objects are a convenience feature for writing entity classes (classes containing data.. mostly) hence you should use them.
 Compared to regular classes data classes:
 
@@ -117,7 +117,8 @@ val person = Person("Nemma", "Nameson", 40)
 val person = Person("Nemma", "Nameson")
 ```
 
-## Nullity and her sisters Mutability and Immutability
+
+## A Tale of Nullity and her sisters Mutability and Immutability
 Kotlin and other modern languages are based heavily around the concept of declaring mutability and specifying _nullability_
 up front.
 What that means is that when you declare your variables you have to specify whether they are ever gonna be changed (mutability) and whether they're allowed to be/contain null. For other and in my opinion failed attempts at this, try googling "c++ const correctness" :D
