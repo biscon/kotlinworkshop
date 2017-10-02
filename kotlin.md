@@ -2,6 +2,7 @@
 An introduction to Kotlin from a Nodes Android App Development perspective.
 This is by no means meant to be a complete reference to Kotlin. Instead
 its a crash course to the various parts of Kotlin that are most relevant to Android developers.
+And no, you cannot have a goddamn youtube video :)
 
 ## General coding
 
