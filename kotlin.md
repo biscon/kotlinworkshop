@@ -207,7 +207,7 @@ the statement won't compile.
 
 ### Fashionable lateinit
 
-## Listeners and Callbacks and starhips named enterprise
+## Listeners and Callbacks and starships named Enterprise
 In java listeners and callbacks are generally implemented as interfaces (or abstract base classes).
 Often anonymous class instantiations are used to write the code "in place", instead of having
 to declare a separate class.
@@ -237,7 +237,7 @@ view.setOnClickListener(object : View.OnClickListener {
 ```
 object expressions are executed (and initialized) immediately, where they are used.
 
-### Using lambda's for callbacks instead of listeners
+### Using Lambda's for callbacks instead of listeners
 Instead of using a listener object expression we can use lambda notation and
 declare and pass a anonymous function directly:
 
@@ -323,7 +323,7 @@ val str = "Ole has ${String.format(Locale.getDefault(), "%.2f", dollars ?: 0.0)}
 **Output**: "Ole has 0.00 russerdollars!!"
 **Do not use nullable types unless you really have to or are getting object references from calling java code**
 
-## Typealias - oe type many names
+## Typealias - one type many names
 typealias is a keyword that works a bit like _typedef_ from the C language family (a powerful keyword from a more civilized age). It basically allows you
 to substitute/alias a type name for another like this:
 
