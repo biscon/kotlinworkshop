@@ -1,10 +1,7 @@
-# Kotlin Krash Kourse
+# A Kotlin Krash Kourse - for java coders
 An introduction to Kotlin from a Nodes Android App Development perspective.
 This is by no means meant to be a complete reference to Kotlin. Instead
 its a crash course to the various parts of Kotlin that are most relevant to Android developers.
-
-
-## Mixing Java and Kotlin
 
 ## General coding
 
@@ -331,9 +328,9 @@ class App : Application()
 ```
 App.instance() will return the instance. a companion object is initialized when the corresponding class is loaded.
 
-## Getters and (irish) Setters
-### Automatic getters and setters
-### Custom getters and setters
+## Accessors (getters and setters)
+### Automatic accessors
+### Custom accessors
 
 ## Nullity and her friends
 Kotlin and other modern languages are based heavily around the concept of declaring mutability and specifying _nullability_
@@ -380,8 +377,46 @@ nullAbleRef = null
 ```
 
 ### Safe call operator
+The safe call operator ? wraps call in a invisible if statement:
+```kotlin
+var view : Activity? = null
+view?.showHelloJpg() // will thankfully never get called
+```
+Is functionally equivalent to writing:
+```kotlin
+var view : Activity? = null
+if(view != null)
+	view?.showHelloJpg()
+```
+
+What is even better is that you can use it all the way along a call chain of nullable references.
+For instance the object Person has a nullable reference to Uncle which in turns hold a nullable refence
+to Cousin. Now you wan't to get the cousins name provided that both he and the uncle actually it exists (this might
+not be the case if their object references are null):
+
+```kotlin
+val cousinName : String? = person.uncle?.cousin?.name!! 
+```
+In the above example person is the only reference that cannot be null
 
 ### Elvis operator
+The elvis operator could be - less colorfully - renamed to the IfNullThen operator. Basically if the result of any statement
+on the left hand side of the operator (the lvalue) is null, whatever is on the right hand side of the operator (the rvalue) is substituted/used instead:
+
+```kotlin
+var name : String? = null
+val greeting = "Hello ${name ?: "world"}
+```
+String contains "Hello world" if name is null, otherwise it will contain the value of name.
+
+Safe call operator is often used in combination with the elvis operator, a practice known as "safe calling Elvis" ?:p
+```kotlin
+// Safe calling Elvis
+val cousinName : String = person.uncle?.cousin?.name ?: "" 
+```
+In this case cousinName isn't nullable, if we do not use the elvis operator to specify an alternative (in this case an empty string)
+the statement won't compile.
+
 ### I don't care operator (unsafecall?)
 ### Lateinit
 
