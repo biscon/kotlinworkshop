@@ -234,7 +234,7 @@ val str = "Ole has ${String.format(Locale.getDefault(), "%.2f", dollars ?: 0.0)}
 **Do not use nullable types unless you really have to or are getting object references from calling java code**
 
 ## Typealias
-typealias is a keyword that works a bit like typedef from the C language family. It basically allows you
+typealias is a keyword that works a bit like _typedef_ from the C language family (a powerful keyword from a more civilized age). It basically allows you
 to substitute/alias a type name for another like this:
 
 ```kotlin
