@@ -356,10 +356,11 @@ j = 5 // will compile just fine and dandy (specially dandy)
 ```
 
 ### Nullability
-It sounds stupid but it's a great way of introducing null pointer exceptions due to programmer error.
+It sounds stupid, but it is a great way of reducing null pointer exceptions due to programmer error.
 We all forget to check our nulls once in a while :)
-Since we cannot easily do away with the whole null concept, since it has it's uses, modern languages instead takes the
-approach requiring the programmer too specify nullability at declaration:
+
+Since we cannot easily do away with the whole null concept, modern languages instead takes the sensible
+approach of requiring the programmer, to specify nullability at declaration:
 
 #### Normal reference
 ```kotlin
@@ -379,6 +380,7 @@ nullAbleRef = null
 ```
 
 ### Safe call operator
+
 ### Elvis operator
 ### I don't care operator (unsafecall?)
 ### Lateinit
