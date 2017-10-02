@@ -34,7 +34,7 @@ val i = myFancyCollection.iterator()
 This is purely syntactic sugar but often leads to easier to read code (although it can also
 hide information).
 
-### Type Casting
+### Type Casting and Checking
 Use as to cast between to different types:
 ```kotlin
 
@@ -68,7 +68,48 @@ on all number types:
 - toDouble(): Double
 - toChar(): Char
 
+### Conditional assigment
+In kotlin if statements can be written as the rvalue of an assigment:
+```kotlin
+val no = 6
+var isBetweenZeroAndFive = if(no >= 0 && no <= 5) true else false
+```
+
+### When - a more flexible version of switch
+Kotlin provides a more flexible alternative to java's switch called when:
+```kotlin
+when(str)
+{
+	"on" -> itsOn()
+	"off" -> itsOff()
+	else -> whoKnows()
+}
+```
+
+### Ranges
+
 ## Data objects
+Data objects are a convenience feature for designing for entity classes (classes containing data mostly) hence you should use them.
+Compared to regular classes data classes:
+- Have a shorter and more convenient syntax
+- Have a builtin toString() which unlike yours is always up to date.
+- Have a built in copy() method, finally its possible to do a deep copy off an object without manually assigning members.
+- Have a built in equals() that compare the actual values of the classes member variables instead of comparing the object reference (pointer).
+- Doesn't care about France
+
+Syntax:
+```kotlin
+data class Person(var firstName : String, var lastName : String, var age : Int)
+
+// with default values (and default values inferring the type)
+data class Person(var firstName = "", var lastName "", var age = 0)
+
+// Upon instantiating you need to pass values with no defaults as a minimum to the constructor, for the first example:
+val person = Person("Nemma", "Nameson", 40)
+
+// if the data class have default values only the ones without defaults are required, eg for the second example:
+val person = Person("Nemma", "Nameson")
+```
 
 ## Listeners and Callbacks
 In java listeners and callbacks are generally implemented as interfaces (or abstract base classes).
