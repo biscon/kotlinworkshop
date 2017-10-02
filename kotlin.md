@@ -35,6 +35,38 @@ This is purely syntactic sugar but often leads to easier to read code (although 
 hide information).
 
 ### Type Casting
+Use as to cast between to different types:
+```kotlin
+
+```
+If the cast cannot be performed the a ClassCastException is thrown (and will crash your app if you do not handle it).
+
+#### Safe casts
+```kotlin
+val aInt: Int? = a as? Int
+```
+
+####  Type checking (instanceof in java)
+Use this _is_ operator to check the type of an object instance:
+```kotlin
+if(obj is String)
+	doSomething()
+	
+if(obj !is String)
+	doSomethingElse()
+```
+
+#### Number conversions
+Unlike Java **DO NOT** use casts to convert between number formats, instead use to family of to*() functions defined
+on all number types:
+
+- toByte(): Byte
+- toShort(): Short
+- toInt(): Int
+- toLong(): Long
+- toFloat(): Float
+- toDouble(): Double
+- toChar(): Char
 
 ## Data objects
 
