@@ -93,7 +93,7 @@ when(str)
 
 ### Ranges
 
-## Data objects ... dobjects?
+## Data objects
 Data objects are a convenience feature for writing entity classes (classes containing data.. mostly) hence you should use them.
 Compared to regular classes data classes:
 
