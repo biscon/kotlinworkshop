@@ -5,6 +5,7 @@ its a crash course to the various parts of Kotlin that are most relevant to Andr
 And no, you cannot have a goddamn youtube video :)
 
 ## General coding
+The brilliant leader and strategist we all aspire to be.
 
 ### Type inference
 Kotlin as most modern languages (even C++11) implements type inference, which
