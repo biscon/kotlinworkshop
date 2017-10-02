@@ -336,6 +336,48 @@ App.instance() will return the instance. a companion object is initialized when 
 ### Custom getters and setters
 
 ## Nullity and her friends
+Kotlin and other modern languages are based heavily around the concept of declaring mutability and specifying _nullability_
+up front.
+What that means is that when you declare your variables you have to specify whether they are ever gonna be changed (mutability) and whether they're allowed to be/contain null. For other and in my opinion failed attempts at this, try googling "c++ const correctness" :D
+
+### Mutability
+When you declare a variable in kotlin you specify mutability:
+
+#### Immutable declaration:
+```kotlin
+val i = 10 // I can never be changed
+i = 5 // won't compile
+```
+
+#### mutable declaration
+```kotlin
+var j = 1
+j = 5 // will compile just fine and dandy (specially dandy)
+```
+
+### Nullability
+It sounds stupid but it's a great way of introducing null pointer exceptions due to programmer error.
+We all forget to check our nulls once in a while :)
+Since we cannot easily do away with the whole null concept, since it has it's uses, modern languages instead takes the
+approach requiring the programmer too specify nullability at declaration:
+
+#### Normal reference
+```kotlin
+// a string:
+var nullAbleRef : String = "Go weekend!!"
+// this cannot be set to null, the following line will not compile:
+nullAbleRef = null
+```
+
+#### Nullable reference
+```kotlin
+// Today the gang is declaring a nullable string:
+var nullAbleRef : String? = null
+// this can be set to either null or a string:
+nullAbleRef = "Go weekend!!"
+nullAbleRef = null
+```
+
 ### Safe call operator
 ### Elvis operator
 ### I don't care operator (unsafecall?)
