@@ -18,7 +18,7 @@ val i : Integer = 10
 
 Can be written as:
 ```kotlin
-val i  = 10 // i is of the type Int
+val i = 10 // i is of the type Int
 val f = 10f // f is a Float
 val d = 10.0 // d is a Double
 val str = "Hi Per" // str is a string
@@ -28,7 +28,7 @@ In the next case the type can be inferred because the return type
 of myFancyCollection.iterator() is defined somewhere.
 
 ```kotlin
-val i  = myFancyCollection.iterator()
+val i = myFancyCollection.iterator()
 ```
 
 This is purely syntactic sugar but often leads to easier to read code (although it can also
@@ -46,10 +46,10 @@ to declare a separate class.
 Example of the listener pattern in java:
 ```java
 view.setOnClickListener(new View.OnClickListener() {
-		@Override
-		public void onClick(View v) {
-			// do something in response to button clicks
-		}
+	@Override
+	public void onClick(View v) {
+		// do something in response to button clicks
+	}
 });
 ```
 
@@ -85,7 +85,8 @@ This is a valid type and be used everywhere like a regular old Int:
 
 ```kotlin
 class MyClass {
-    var myCallbackFunction : (success: Boolean) -> Int // this function takes a boolean as an argument and returns an integer
+	// this function takes a boolean as an argument and returns an integer
+    var myCallbackFunction : (success: Boolean) -> Int
 }
 
 // Declare and assign a function to the variable, This implementation calls doSomething() and then return 10
@@ -142,7 +143,8 @@ it could be written like this:
 typealias CallbackFunction = (success: Boolean) -> Int
 
 class MyClass {
-    var myCallbackFunction : CallbackFunction // this function takes a boolean as an argument and returns an integer
+	// this function takes a boolean as an argument and returns an integer
+    var myCallbackFunction : CallbackFunction 
 }
 ```
 Now CallbackFunction can be used instead of typing out: (success: Boolean) -> Int, much more readable. 
