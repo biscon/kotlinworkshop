@@ -117,6 +117,94 @@ val person = Person("Nemma", "Nameson", 40)
 val person = Person("Nemma", "Nameson")
 ```
 
+## Nullity and her friends
+Kotlin and other modern languages are based heavily around the concept of declaring mutability and specifying _nullability_
+up front.
+What that means is that when you declare your variables you have to specify whether they are ever gonna be changed (mutability) and whether they're allowed to be/contain null. For other and in my opinion failed attempts at this, try googling "c++ const correctness" :D
+
+### Mutability
+When you declare a variable in kotlin you specify mutability:
+
+#### Immutable declaration:
+```kotlin
+val i = 10 // I can never be changed
+i = 5 // won't compile
+```
+
+#### mutable declaration
+```kotlin
+var j = 1
+j = 5 // will compile just fine and dandy (specially dandy)
+```
+
+### Nullability
+It sounds stupid, but it is a great way of reducing null pointer exceptions due to programmer error.
+We all forget to check our nulls once in a while :)
+
+Since we cannot easily do away with the whole null concept, modern languages instead takes the sensible
+approach of requiring the programmer, to specify nullability at declaration:
+
+#### Normal reference
+```kotlin
+// a string:
+var nullAbleRef : String = "Go weekend!!"
+// this cannot be set to null, the following line will not compile:
+nullAbleRef = null
+```
+
+#### Nullable reference
+```kotlin
+// Today the gang is declaring a nullable string:
+var nullAbleRef : String? = null
+// this can be set to either null or a string:
+nullAbleRef = "Go weekend!!"
+nullAbleRef = null
+```
+
+### Safe call operator
+The safe call operator ? wraps call in a invisible if statement:
+```kotlin
+var view : Activity? = null
+view?.showHelloJpg() // will thankfully never get called
+```
+Is functionally equivalent to writing:
+```kotlin
+var view : Activity? = null
+if(view != null)
+	view?.showHelloJpg()
+```
+
+What is even better is that you can use it all the way along a call chain of nullable references.
+For instance the object Person has a nullable reference to Uncle which in turns hold a nullable refence
+to Cousin. Now you wan't to get the cousins name provided that both he and the uncle actually it exists (this might
+not be the case if their object references are null):
+
+```kotlin
+val cousinName : String? = person.uncle?.cousin?.name
+```
+In the above example person is the only reference that cannot be null
+
+### Elvis operator
+The elvis operator could be - less colorfully - renamed to the IfNullThen operator. Basically if the result of any statement
+on the left hand side of the operator (the lvalue) is null, whatever is on the right hand side of the operator (the rvalue) is substituted/used instead:
+
+```kotlin
+var name : String? = null
+val greeting = "Hello ${name ?: "world"}
+```
+String contains "Hello world" if name is null, otherwise it will contain the value of name.
+
+Safe call operator is often used in combination with the elvis operator, a practice known as "safe calling Elvis" ?:p
+```kotlin
+// Safe calling Elvis
+val cousinName : String = person.uncle?.cousin?.name ?: "" 
+```
+In this case cousinName isn't nullable, if we do not use the elvis operator to specify an alternative (in this case an empty string)
+the statement won't compile.
+
+### I don't care operator (unsafecall?)
+### Lateinit
+
 ## Listeners and Callbacks
 In java listeners and callbacks are generally implemented as interfaces (or abstract base classes).
 Often anonymous class instantiations are used to write the code "in place", instead of having
@@ -333,94 +421,6 @@ App.instance() will return the instance. a companion object is initialized when 
 ## Accessors (getters and setters)
 ### Automatic accessors
 ### Custom accessors
-
-## Nullity and her friends
-Kotlin and other modern languages are based heavily around the concept of declaring mutability and specifying _nullability_
-up front.
-What that means is that when you declare your variables you have to specify whether they are ever gonna be changed (mutability) and whether they're allowed to be/contain null. For other and in my opinion failed attempts at this, try googling "c++ const correctness" :D
-
-### Mutability
-When you declare a variable in kotlin you specify mutability:
-
-#### Immutable declaration:
-```kotlin
-val i = 10 // I can never be changed
-i = 5 // won't compile
-```
-
-#### mutable declaration
-```kotlin
-var j = 1
-j = 5 // will compile just fine and dandy (specially dandy)
-```
-
-### Nullability
-It sounds stupid, but it is a great way of reducing null pointer exceptions due to programmer error.
-We all forget to check our nulls once in a while :)
-
-Since we cannot easily do away with the whole null concept, modern languages instead takes the sensible
-approach of requiring the programmer, to specify nullability at declaration:
-
-#### Normal reference
-```kotlin
-// a string:
-var nullAbleRef : String = "Go weekend!!"
-// this cannot be set to null, the following line will not compile:
-nullAbleRef = null
-```
-
-#### Nullable reference
-```kotlin
-// Today the gang is declaring a nullable string:
-var nullAbleRef : String? = null
-// this can be set to either null or a string:
-nullAbleRef = "Go weekend!!"
-nullAbleRef = null
-```
-
-### Safe call operator
-The safe call operator ? wraps call in a invisible if statement:
-```kotlin
-var view : Activity? = null
-view?.showHelloJpg() // will thankfully never get called
-```
-Is functionally equivalent to writing:
-```kotlin
-var view : Activity? = null
-if(view != null)
-	view?.showHelloJpg()
-```
-
-What is even better is that you can use it all the way along a call chain of nullable references.
-For instance the object Person has a nullable reference to Uncle which in turns hold a nullable refence
-to Cousin. Now you wan't to get the cousins name provided that both he and the uncle actually it exists (this might
-not be the case if their object references are null):
-
-```kotlin
-val cousinName : String? = person.uncle?.cousin?.name
-```
-In the above example person is the only reference that cannot be null
-
-### Elvis operator
-The elvis operator could be - less colorfully - renamed to the IfNullThen operator. Basically if the result of any statement
-on the left hand side of the operator (the lvalue) is null, whatever is on the right hand side of the operator (the rvalue) is substituted/used instead:
-
-```kotlin
-var name : String? = null
-val greeting = "Hello ${name ?: "world"}
-```
-String contains "Hello world" if name is null, otherwise it will contain the value of name.
-
-Safe call operator is often used in combination with the elvis operator, a practice known as "safe calling Elvis" ?:p
-```kotlin
-// Safe calling Elvis
-val cousinName : String = person.uncle?.cousin?.name ?: "" 
-```
-In this case cousinName isn't nullable, if we do not use the elvis operator to specify an alternative (in this case an empty string)
-the statement won't compile.
-
-### I don't care operator (unsafecall?)
-### Lateinit
 
 ## Extensions
 
