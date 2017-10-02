@@ -397,7 +397,7 @@ to Cousin. Now you wan't to get the cousins name provided that both he and the u
 not be the case if their object references are null):
 
 ```kotlin
-val cousinName : String? = person.uncle?.cousin?.name!! 
+val cousinName : String? = person.uncle?.cousin?.name
 ```
 In the above example person is the only reference that cannot be null
 
