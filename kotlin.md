@@ -9,9 +9,10 @@ its a crash course to the various parts of Kotlin that are most relevant to Andr
 ## General coding
 
 ### Type inference
-Kotlin as most modern languages and even C++ (since C++11) implements type inference, which
-basically mean that your don't have to write out the type in case it can be inferred.
+Kotlin as most modern languages (even C++11) implements type inference, which
+basically means that your don't have to write out the type, in case it can be inferred.
 
+The declaration and assignment:
 ```kotlin
 val i : Integer = 10
 ```
@@ -23,31 +24,34 @@ val f = 10f // f is a Float
 val d = 10.0 // d is a Double
 val str = "Hi Per" // str is a string
 ```
-Because the type of i can be inferred based on the value assignment.
-In the next case the type can be inferred because the return type
-of myFancyCollection.iterator() is defined somewhere.
+Because the type of _i_ can be inferred based on the value of the assignment.
+
+In this example the type can be inferred because the return type of myFancyCollection.iterator() is defined somewhere:
 
 ```kotlin
 val i = myFancyCollection.iterator()
 ```
 
-This is purely syntactic sugar but often leads to easier to read code (although it can also
+This feature is purely syntactic sugar but often leads to easier to read code (although it can also
 hide information).
 
 ### Type Casting and Checking
-Use as to cast between to different types:
+Use as to cast between to different types (using type inference) casting an object of the type KoolKeith to DoctorOctagon:
 ```kotlin
-
+val performer = KoolKeith as DoctorOctagon
+performer.perform("blue flowers")
 ```
 If the cast cannot be performed the a ClassCastException is thrown (and will crash your app if you do not handle it).
 
 #### Safe casts
+There is also a safe version of the cast operator as? unlike as it returns null instead of throwing an exception:
 ```kotlin
 val aInt: Int? = a as? Int
+// if a is not an Int aInt == null
 ```
 
 ####  Type checking (instanceof in java)
-Use this _is_ operator to check the type of an object instance:
+Use the _is_ operator to check the type of an object instance:
 ```kotlin
 if(obj is String)
 	doSomething()
@@ -57,8 +61,8 @@ if(obj !is String)
 ```
 
 #### Number conversions
-Unlike Java **DO NOT** use casts to convert between number formats, instead use to family of to*() functions defined
-on all number types:
+Unlike Java **DO NOT** use casts to convert between number formats, instead use the family of to*() functions defined
+on all numeral types:
 
 - toByte(): Byte
 - toShort(): Short
@@ -67,6 +71,8 @@ on all number types:
 - toFloat(): Float
 - toDouble(): Double
 - toChar(): Char
+
+There is also .toAllOfTheAforementionedTypes() functions on the String class (but use string templates instead)
 
 ### Conditional assigment
 In kotlin if statements can be written as the rvalue of an assigment:
@@ -89,13 +95,14 @@ when(str)
 ### Ranges
 
 ## Data objects
-Data objects are a convenience feature for designing for entity classes (classes containing data mostly) hence you should use them.
+Data objects are a convenience feature for writing entity classes (classes containing data.. mostly) hence you should use them.
 Compared to regular classes data classes:
+
 - Have a shorter and more convenient syntax
 - Have a builtin toString() which unlike yours is always up to date.
 - Have a built in copy() method, finally its possible to do a deep copy off an object without manually assigning members.
 - Have a built in equals() that compare the actual values of the classes member variables instead of comparing the object reference (pointer).
-- Doesn't care about France
+- Doesn't give a crap about France
 
 Syntax:
 ```kotlin
@@ -222,7 +229,7 @@ class MyClass {
 ```
 Now CallbackFunction can be used instead of typing out: (success: Boolean) -> Int, much more readable. 
 
-## Singlejohns and static members
+## Singletons and static members
 Singletons are basically a way of allowing only one instance of a class. Because this is such an often used
 pattern Kotlin supports it directly using Object Declaration:
 
@@ -237,6 +244,7 @@ object MySingleton
 Objects can have supertypes but no constructors (as its always constructed for you).
 Object declarations are initialized lazily, when accessed for the first time.
 
+**Remember singletons often lead to higher coupling, which in turn leads to the dark side.**
 
 ### Using objects from Java
 Accessing object members from java uses a special syntax.
@@ -247,7 +255,7 @@ MySingleton.INSTANCE.myFunction()
 ```
 
 ### Static members 
-Kotlin does not have a static keyword like java (same thing can be achieved with the **@JvmStatic** annotation though).
+Kotlin does not have a static keyword like java (same thing can be achieved with the **@JvmStatic** annotation though, since it is still supported on the JVM level ofc).
 Instead it has a construct called a companion object. Easy way to think of it is that everything inside the companion
 object is shared between all instances of the class.
 
