@@ -80,7 +80,7 @@ val no = 6
 var isBetweenZeroAndFive = if(no >= 0 && no <= 5) true else false
 ```
 
-### When - a more flexible version of switch
+### Knowing When to switch - a more flexible condition multiplexer
 Kotlin provides a more flexible alternative to java's switch called when:
 ```kotlin
 when(str)
@@ -162,7 +162,7 @@ nullAbleRef = "Go weekend!!"
 nullAbleRef = null
 ```
 
-### Safe call operator - A safe voice in and endless void*
+### Safe call operator - A safe voice in an endless void*
 The safe call operator ? wraps call in a invisible if statement:
 ```kotlin
 var view : Activity? = null
