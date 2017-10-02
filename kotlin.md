@@ -196,6 +196,43 @@ For instance if you don't care about the view parameter on View.OnClickListener,
 ```kotlin
 view.setOnClickListener { doSomething() }
 ```
+## String Templates
+Use string templates, they are awesome :). You basically use them like this:
+
+```kotlin
+val no = 10
+val str = "$no good reasons to use string templates ;)"
+```
+
+If you need to refer to an object member or even do a calculation ${} syntax allows you to evaluate the expression inside:
+```kotlin
+val person = Person("Nemma", "Nameson", 40)
+val str = "The person ${person.firstName) ${person.lastName) is ${person.age} years old"
+```
+
+This can be combined with the safe call and the elvis operator, so you can null check and provide an alternative all inside the string template:
+```kotlin
+val person : Person? = null
+val str = "The person ${person?.firstName ?: "Unknown") ${person?.lastName ?: "Person") is ${person?.age :? "some"} years old"
+```
+If person happens to be null (and the person reference is nullable either specified or inferred) the string will contain:
+
+"The person Unknown Person is some years old"
+
+### Combining with String.format()
+The power of the format() is still available in kotlin:
+```kotlin
+val dollars = 198.50
+val str = "Ole has ${String.format(Locale.getDefault(), "%.2f", dollars)} russerdollars!!"
+```
+**Output**: "Ole has 198.50 russerdollars!!" (depending on your devices current locale the decimal separator might be a comma)
+
+And if dollars is nullable:
+```kotlin
+val str = "Ole has ${String.format(Locale.getDefault(), "%.2f", dollars ?: 0.0)} russerdollars!!"
+```
+**Output**: "Ole has 0.00 russerdollars!!"
+**Do not use nullable types unless you really have to or are getting object references from calling java code**
 
 ## Typealias
 typealias is a keyword that works a bit like typedef from the C language family. It basically allows you
@@ -303,8 +340,6 @@ App.instance() will return the instance. a companion object is initialized when 
 ### Elvis operator
 ### I don't care operator (unsafecall?)
 ### Lateinit
-
-## String Templates
 
 ## Extensions
 
