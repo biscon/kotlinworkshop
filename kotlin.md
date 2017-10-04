@@ -550,6 +550,22 @@ var counter = 0
 ```
 
 ## Extensions
+Extensions are a way to add a member function to class without changing the definition.
+This can be very powerful because it can be applied to library classes as well.
+
+Following code adds a method formatAmount on the builtin String class:
+
+```kolin
+fun String.formatAmount(amount : Double) : String
+{
+	return String.format(Locale.getDefault(), "%.2f", amount)
+}
+
+// use
+val formattedAmountString = String.formatAmount(21.5)
+```
+formattedAmountString is now "21.00".
+Inside the extension you can refer to other member variables and use this.
 
 ## Collections
 There is a lot to be said about collections and kotlin which is unfortunately out of scope of this introduction.
@@ -567,7 +583,39 @@ myMutableList.add(10) // compiles a-ok
 ```
 
 ## Coroutines
-kotlin.coroutines=enable in gradle.properties
+Coroutines are an experimental feature, first add the following to gradle.properties to suppress annoying
+linter messages:
+```
+kotlin.coroutines=enable
+```
+
+Coroutines are an advanced topic and as such a topic for a workshop in itself. There is plenty of good documentation available online. The following
+are a few simple usages:
+
+Use **launch()** to break off into a separate coroutine
+```kotlin
+launch(CommonPool)
+{
+
+}
+```
+launch returns a Job which you can do exciting things, like cancelling the coroutine or poll for completion.
+CommonPool means use a preallocated threadpool to run the coroutines, other possible values are UI if you want it
+to run on the main thread. You can nest launch:
+
+```kotlin
+launch(CommonPool)
+{
+	val result = longRunningOperation() // this line is executed in a background thread
+	lauch(UI)
+	{
+		showResult(result)				// this line is being executed on the main/ui thread
+	}
+}
+```
+Refer to this guide for more advanced uses:
+https://github.com/Kotlin/kotlinx.coroutines/blob/master/coroutines-guide.md
+
 
 ## Kotlin Android Extension gradle plugin
 If you've have included the Kotlin Android Extension you can skip the boring process of binding views defined and instantiated
@@ -593,7 +641,4 @@ and the regular ole' java class object. This is how you access the java class ob
 ```kotlin
 val myClassName = MyClass::class.java.name
 ```
-
-
-
 
