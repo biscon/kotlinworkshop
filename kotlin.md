@@ -4,6 +4,50 @@ This is by no means meant to be a complete reference to Kotlin. Instead
 its a crash course to the various parts of Kotlin that are most relevant to Android developers.
 And no, you cannot have a goddamn youtube video instead :)
 
+Table of Contents
+=================
+
+   * [A Kotlin Krash Kourse - for java coders](#a-kotlin-krash-kourse---for-java-coders)
+      * [General coding](#general-coding)
+         * [Type inference](#type-inference)
+         * [Type Casting and Checking](#type-casting-and-checking)
+            * [Safe casts](#safe-casts)
+            * [Type checking (instanceof in java)](#type-checking-instanceof-in-java)
+            * [Number conversions](#number-conversions)
+         * [Conditional assigment](#conditional-assigment)
+         * [Knowing When to switch - a more flexible condition multiplexer](#knowing-when-to-switch---a-more-flexible-condition-multiplexer)
+         * [Ranges](#ranges)
+      * [Data objects](#data-objects)
+      * [A Tale of Nullity and her sisters Mutability and Immutability](#a-tale-of-nullity-and-her-sisters-mutability-and-immutability)
+         * [Mutability](#mutability)
+            * [Immutable declaration:](#immutable-declaration)
+            * [mutable declaration](#mutable-declaration)
+         * [Nullability](#nullability)
+            * [Normal reference](#normal-reference)
+            * [Nullable reference](#nullable-reference)
+         * [Safe call operator - A safe voice in an endless void*](#safe-call-operator---a-safe-voice-in-an-endless-void)
+         * [Elvis operator](#elvis-operator)
+         * [The !! operator (unsafecall?)](#the--operator-unsafecall)
+         * [Fashionable lateinit](#fashionable-lateinit)
+      * [Listeners and Callbacks and starships named Enterprise](#listeners-and-callbacks-and-starships-named-enterprise)
+         * [Object Expressions](#object-expressions)
+         * [Using Lambda's for callbacks instead of listeners](#using-lambdas-for-callbacks-instead-of-listeners)
+      * [Contemplating String Templates](#contemplating-string-templates)
+         * [Combining with String.format()](#combining-with-stringformat)
+      * [Typealias - one type many names](#typealias---one-type-many-names)
+      * [Singletons and static members - Open from 10PM](#singletons-and-static-members---open-from-10pm)
+         * [Using objects from Java](#using-objects-from-java)
+         * [Static members](#static-members)
+         * [Android Application class (with companion object)](#android-application-class-with-companion-object)
+      * [Accessors (getters and setters)](#accessors-getters-and-setters)
+         * [Automatic accessors](#automatic-accessors)
+         * [Custom accessors](#custom-accessors)
+      * [Extensions](#extensions)
+      * [Collections](#collections)
+      * [Coroutines](#coroutines)
+      * [Kotlin Android Extension](#kotlin-android-extension)
+      * [Class objects](#class-objects)
+
 ## General coding
 The brilliant leader and strategist we all aspire to be.
 
