@@ -495,17 +495,104 @@ App.instance() will return the instance. a companion object is initialized when 
 
 ## Accessors (getters and setters)
 ### Automatic accessors
+Accessors are automatically generated for you whenever you declare a object member variable which is public (which is the default in kotlin)
+However in kotlin you don't call them as functions but instead how you would access a public variable in java.
+
+If its a mutable public variable (declared with var) both setter and getter is generated, where as if its an immutable reference (declared with val)
+only a getter is generated.
+
+```kotlin
+class Person
+{
+	var firstName = ""
+}
+```
+In the above example the kotlin compiler autogenerates the methods **setFirstName()** and **getFirstName()** for you.
+From java code you would use the above class like this:
+
+```java
+Person p = new Person();
+p.setFirstName("Gertrude Powershield")
+String name = p.getFirstName()
+```
+
+In kotlin the accessors are automatically called for you, hence you can use the following syntax (for easier to read code):
+
+```kotlin
+val p = Person()
+p.firstName = "Gertrude Powershield"
+val name = p.firstName
+```
+
 ### Custom accessors
+In case you want to do custom accessor they must be written immediately after the variable declaration:
+
+```kolin
+// declare isEmpty variable as well as its getter
+val isEmpty: Boolean
+    get() = this.size == 0
+    
+// alternative syntax
+val isEmpty: Boolean
+    get() { 
+    	return this.size == 0
+    }
+```
+
+Setters are basically the same deal but its useful to know that you can refer to the variable you're setting with the **field** keyword
+value is an optional name for the argument:
+
+```kolin
+var counter = 0
+    set(value) {
+        if (value >= 0) field = value
+    }
+```
 
 ## Extensions
 
 ## Collections
+There is a lot to be said about collections and kotlin which is unfortunately out of scope of this introduction.
+
+One big difference from java is that the mutability concept have been extended to collections.
+Kotlin contains a Mutable and Immutable versions of the run-of-the mill collection interfaces (List, Map etc)
+where as the underlying containers (ArrayList, HashMap) are always mutable.
+
+```kotlin
+var myImmutableList : List<Int> = ArrayList() // my list has no add or remove methods
+myImmutableList.add(10) // will not compile
+
+var myMutableList : MutableList<Int> = ArrayList() // Contains all the jazz you're used to from java's List interface
+myMutableList.add(10) // compiles a-ok
+```
 
 ## Coroutines
+kotlin.coroutines=enable in gradle.properties
 
-## Kotlin Android Extension
+## Kotlin Android Extension gradle plugin
+If you've have included the Kotlin Android Extension you can skip the boring process of binding views defined and instantiated
+by the LayoutInflater and instead having it done automatically for you by simple "importing the layout". Place the following
+line somewhere in your import statements and replace <layout_name> with the name of a layout in your project (ex: fragment_home)
+
+```kotlin
+import kotlinx.android.synthetic.main.<layout_name>.*
+```
+
+To use this feature you have to apply the gradle plugin in your app's gradle.build like this:
+
+```groovy
+apply plugin: 'kotlin-android-extensions'
+```
+
+_If you use this feature, which I think you should, adopt camelCaseNaming for your XML view id's since they're getting turned in variable names directly._
 
 ## Class objects
+A lot of java libraries use the class object. In kotlin there is both a kotlin class object (a klass object if you will :D)
+and the regular ole' java class object. This is how you access the java class object in kotlin:
+
+```kotlin
+val myClassName = MyClass::class.java.name
+```
 
 
 
