@@ -262,6 +262,9 @@ myNormalString = myNullableString!!
 Try avoid using it.
 _The android studio java <-> kotlin transpiler REALLY likes using it_
 
+See also:
+https://kotlinlang.org/docs/reference/null-safety.html
+
 ### Fashionable lateinit
 Sometimes you REALLY don't want to use a nullable reference, but you also don't wan't to assign a value right away.
 This is where you can make use of lateinit, but beware, if used before being initializated it will throw a 
