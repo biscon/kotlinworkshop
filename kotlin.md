@@ -248,8 +248,37 @@ In this case cousinName isn't nullable, if we do not use the elvis operator to s
 the statement won't compile.
 
 ### The !! operator (unsafecall?)
+This is operator (which apparently doesn't have a name) makes a nullable reference behave like in java,
+in the way that you can use it in situations where the compiler normally wouldn't allow it:
+
+```kotlin
+var myNullableString : String? = null
+var myNormalString : String = "Hola Gruppo"
+// this won't compile because the rvalue can be null
+myNormalString = myNullableString 
+// This compiles, but will result in a null pointer exception at runtime if dereferenced while containing null (like java)
+myNormalString = myNullableString!!
+```
+Try avoid using it.
+_The android studio java <-> kotlin transpiler REALLY likes using it_
 
 ### Fashionable lateinit
+Sometimes you REALLY don't want to use a nullable reference, but you also don't wan't to assign a value right away.
+This is where you can make use of lateinit, but beware, if used before being initializated it will throw a 
+NPE at you.
+It's included for those situations where you cannot initialize a variable right away but would rather prefer not to make it
+nullable because you'd then have to deal with it in the remainder of your code.
+(alternatives are lazy initialization)
+
+```kotlin
+lateinit var imNotNullableButCanBeAssignedLater : Int
+
+// sometime later...
+imNotNullableButCanBeAssignedLater = 10 // a-ok
+```
+A better example of the use of lateinit is provided in the paragraph 
+[Android Application class (with companion object)](#android-application-class-with-companion-object)
+
 
 ## Listeners and Callbacks and starships named Enterprise
 In java listeners and callbacks are generally implemented as interfaces (or abstract base classes).
