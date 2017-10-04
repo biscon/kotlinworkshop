@@ -44,7 +44,7 @@ Contents
   * [Extensions](#extensions)
   * [Collections](#collections)
   * [Coroutines](#coroutines)
-  * [Kotlin Android Extension](#kotlin-android-extension)
+  * [Kotlin Android Extension gradle plugin](#kotlin-android-extension-gradle-plugin)
   * [Class objects](#class-objects)
       
 
