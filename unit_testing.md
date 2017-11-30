@@ -30,7 +30,7 @@ Why all external dependencies used by anything other than the views should be wr
 
 
 ## Links
-[warningapp-kotlin-android] (https://github.com/nodes-projects/warningapp-kotlin-android)
+[warningapp-kotlin-android](https://github.com/nodes-projects/warningapp-kotlin-android)
 
 [Mockito documentation](http://static.javadoc.io/org.mockito/mockito-core/2.12.0/org/mockito/Mockito.html)
 
@@ -38,7 +38,7 @@ Why all external dependencies used by anything other than the views should be wr
 
 
 ## Samples
-links to the already written tests
+The project contains 4 finished unit tests to serve as references/samples:
 
 Presenters:
 
